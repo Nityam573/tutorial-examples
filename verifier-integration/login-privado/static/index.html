@@ -10,17 +10,88 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="header">Login with Privado ID</div>
-
-    <div class="subheader">Click the button below:</div>
-    <!-- Button to Universal Link -->
-    <a id="button" href="#" target="_blank" class="action-button">Login with Privado ID</a>
+  <!-- Login Container -->
+  <div class="container" id="loginContainer">
+    <div class="logo-container">
+      <div class="logo-icon">🔐</div>
+    </div>
     
-    <div class="subheader">OR</div>
-    <div class="subheader">Scan using Mobile Wallet:</div>
-    <!-- Div for QR Code -->
-    <div id="qrcode"></div>
+    <div class="header">Welcome Back</div>
+    <div class="subtitle">Sign in securely with your Privado ID digital identity</div>
+
+    <a id="button" href="#" target="_blank" class="action-button">
+      <span>🚀</span>
+      <span>Login with Privado ID</span>
+    </a>
+    
+    <div class="divider-container">
+      <div class="divider-line"></div>
+      <div class="divider-text">Or</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-label">Scan QR Code with Mobile Wallet</div>
+      <div id="qrcode"></div>
+    </div>
+
+    <div id="errorMessage" class="error-message"></div>
+  </div>
+
+  <!-- Dashboard Container (shown after login) -->
+  <div class="dashboard" id="dashboardContainer">
+    <div class="welcome-icon">👋</div>
+    <div class="welcome-title">Welcome Back!</div>
+    <div class="welcome-subtitle">You have successfully authenticated with Privado ID</div>
+
+    <div class="did-container">
+      <div class="did-label">Your Digital Identity (DID)</div>
+      <div class="did-value" id="userDID">Loading...</div>
+    </div>
+
+    <div class="user-info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">🔒</div>
+        <div class="info-card-label">Status</div>
+        <div class="info-card-value">Verified</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">⚡</div>
+        <div class="info-card-label">Auth Type</div>
+        <div class="info-card-value">Privado ID</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🌐</div>
+        <div class="info-card-label">Network</div>
+        <div class="info-card-value" id="networkType">Main</div>
+      </div>
+    </div>
+
+    <div class="dashboard-actions">
+      <button class="dashboard-btn dashboard-btn-primary" onclick="goToDashboard()">
+        <span>📊</span>
+        <span>Go to Dashboard</span>
+      </button>
+      <button class="dashboard-btn dashboard-btn-secondary" onclick="logout()">
+        <span>🚪</span>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal-overlay">
+    <div class="modal">
+      <div class="success-icon">
+        <div class="checkmark"></div>
+      </div>
+      <div class="modal-title">Login Successful! 🎉</div>
+      <div class="modal-message">
+        You have successfully authenticated with Privado ID.<br>
+        Your digital identity has been verified.
+      </div>
+      <button class="modal-close-btn" onclick="closeModal()">Continue</button>
+    </div>
   </div>
 
   <!-- Include the external script file -->

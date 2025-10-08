@@ -14,6 +14,27 @@ app.get("/api/sign-in", (req, res) => {
   getAuthRequest(req, res);
 });
 
+app.get("/api/auth-status", (req, res) => {
+  const sessionId = req.query.sessionId;
+
+  if (!sessionId) {
+    return res.status(400).send({ error: "Session ID is required" });
+  }
+
+  // Check if authentication was successful for this session
+  const authData = requestMap.get(`${sessionId}_authenticated`);
+
+  if (authData) {
+    return res.status(200).json({
+      authenticated: true,
+      from: authData.from,
+      ...authData
+    });
+  }
+
+  return res.status(404).json({ authenticated: false });
+});
+
 app.post("/api/callback", (req, res) => {
   console.log("callback");
   callback(req, res);
@@ -27,19 +48,17 @@ app.listen(port, () => {
 const requestMap = new Map();
 
 async function getAuthRequest(req, res) {
-  // Audience is verifier did
-  const hostUrl = "https://377f1faaedc1.ngrok-free.app";
-  const sessionId = Date.now(); 
+  const hostUrl = "Your_Public_API";
+  const sessionId = Date.now();
   const callbackURL = "/api/callback";
   const audience =
-    "did:polygonid:polygon:amoy:2qQ68JkRcf3xrHPQPWZei3YeVzHPP58wYNxx2mEouR";
+    "did:polygonid:polygon:amoy:2qQ68JkRcf3xrHPQPWZei3YeVzHPP58wYNxx2mEouR"; // Your Verifier DID
 
   const uri = `${hostUrl}${callbackURL}?sessionId=${sessionId}`;
 
   // Generate request for basic authentication only (no proof requirements)
   const request = auth.createAuthorizationRequest("Basic Sign In", audience, uri);
 
-  // Remove any existing scope (proof requests) - we want basic auth only
   request.body.scope = [];
 
   // Store auth request in map associated with session ID
@@ -94,7 +113,7 @@ async function callback(req, res) {
       AcceptedStateTransitionDelay: 5 * 60 * 1000, // 5 minutes
     };
 
-    // Verify the basic authentication (identity verification only)
+    // identity verification only
     const authResponse = await verifier.fullVerify(tokenStr, authRequest, opts);
 
     console.log(`Basic authentication successful for session: ${sessionId}`);
