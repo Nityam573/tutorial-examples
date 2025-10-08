@@ -1,10 +1,10 @@
 # Privado Login Service
 
-A Node.js backend service implementing secure authentication using Privado's decentralized identity protocol.
+A Node.js backend service implementing secure authentication using Privado ID wallet.
 
 ## Overview
 
-This service provides a complete authentication flow leveraging Privado's zero-knowledge proof system. Users authenticate by scanning a QR code or clicking a universal link that opens their Privado ID wallet, offering a privacy-preserving alternative to traditional credential-based authentication.
+This service provides a complete authentication flow leveraging Privado's zero-knowledge proof system. Users authenticate by scanning a QR code or clicking a button that opens their Privado ID wallet, offering a privacy-preserving alternative to traditional authentication.
 
 ### API Endpoints
 
