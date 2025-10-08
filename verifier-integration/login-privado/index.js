@@ -101,20 +101,11 @@ async function callback(req, res) {
     // Verify the basic authentication (identity verification only)
     const authResponse = await verifier.fullVerify(tokenStr, authRequest, opts);
 
-    // Clean up the session after successful verification
-    requestMap.delete(`${sessionId}`);
-
     console.log(`Basic authentication successful for session: ${sessionId}`);
     console.log("User DID:", authResponse.from);
 
-    // Return success response with user information
-    return res.status(200).set("Content-Type", "application/json").send({
-      success: true,
-      message: "Basic authentication successful",
-      userDID: authResponse.from,
-      timestamp: new Date().toISOString(),
-      sessionId: sessionId
-    });
+    // Return success response
+    return res.status(200).set("Content-Type", "application/json").send(authResponse);
 
   } catch (error) {
     console.error("Authentication error:", error);
