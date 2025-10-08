@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 const port = 8080;
 
-app.use(express.static("../static"));
+app.use(express.static("./static"));
 app.use(cors());
 
 app.get("/api/sign-in", (req, res) => {
@@ -68,7 +68,7 @@ async function callback(req, res) {
       return res.status(400).send({ error: "Token is required" });
     }
 
-    const keyDIR = "../keys";
+    const keyDIR = "./keys";
     const resolvers = {
       ["polygon:amoy"]: new resolver.EthStateResolver(
         "https://rpc-amoy.polygon.technology",
