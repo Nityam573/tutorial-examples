@@ -1,10 +1,10 @@
-# Privado Login Service
+# Billions Login Service
 
-A Node.js backend service implementing secure authentication using Privado ID wallet.
+A Node.js backend service implementing secure authentication using Billions Network.
 
 ## Overview
 
-This service provides a complete authentication flow leveraging Privado's zero-knowledge proof system. Users authenticate by scanning a QR code or clicking a button that opens their Privado ID wallet, offering a privacy-preserving alternative to traditional authentication.
+This service provides a complete authentication flow leveraging Billions's zero-knowledge proof system. Users authenticate by clicking a button that opens their Billions wallet, offering a privacy-preserving alternative to traditional authentication.
 
 ### API Endpoints
 
@@ -16,7 +16,7 @@ This service provides a complete authentication flow leveraging Privado's zero-k
 
 ### Local Development with ngrok
 
-Since Privado wallets require public HTTPS access for authentication callbacks, use ngrok for local development:
+Since Billions wallets require public HTTPS access for authentication callbacks, use ngrok for local development:
 
 1. **Install ngrok:**
    ```bash
