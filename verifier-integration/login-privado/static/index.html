@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login with Privado ID (Demo)</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container" id="loginContainer">
+    <div class="logo-container">
+      <div class="logo-icon">🔐</div>
+    </div>
+
+    <div class="header">Demo</div>
+    <div class="subtitle">Sign in securely with your Privado ID digital identity</div>
+
+    <a id="button" href="#" target="_blank" class="action-button">Login with Privado ID</a>
+
+    <div id="errorMessage" class="error-message"></div>
+  </div>
+
+  <div class="dashboard" id="dashboardContainer">
+    <div class="welcome-icon">👋</div>
+    <div class="welcome-title">Welcome Back!</div>
+    <div class="welcome-subtitle">You have successfully authenticated with Privado ID</div>
+
+    <div class="did-container">
+      <div class="did-label">User Profile DID</div>
+      <div class="did-value" id="userDID">Loading...</div>
+    </div>
+
+    <div class="dashboard-actions">
+      <button class="dashboard-btn dashboard-btn-secondary" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div id="successModal" class="modal-overlay">
+    <div class="modal">
+      <div class="success-icon">
+        <div class="checkmark"></div>
+      </div>
+      <div class="modal-title">Login Successful!</div>
+      <div class="modal-message">
+        You have successfully authenticated with Privado ID.<br/>
+        Your digital identity has been verified.
+      </div>
+      <button class="modal-close-btn" id="continueBtn">Continue</button>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
